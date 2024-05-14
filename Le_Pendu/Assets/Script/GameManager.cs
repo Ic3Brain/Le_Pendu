@@ -8,29 +8,34 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    Game currentGame;
+    public Game currentGame;
     public List<string> wordList;
-    private string reponse;
-    private bool win = false;
-    public TMP_Text txt;
-    private int i = 0;
+    
+    
     [SerializeField]
     IHMController iHMController;
+    public static GameManager INSTANCE;
     
     
+    void Awake()
+    {
+        INSTANCE = this;
+    }
     
     
     void Start()
     {
         StartNewGame();
+        
     }
 
    public void StartNewGame()
     {
         currentGame = new Game(wordList);
+        iHMController.UpdateIhm();
     } 
     
-    public void Validation(string letter){
+    /*public void Validation(string letter){
         reponse = "";
         win = false;
         
@@ -55,28 +60,41 @@ public class GameManager : MonoBehaviour
         }
         txt.text = reponse;
         Verification();
+    }*/
+    public void Validation(string letter)
+    {   
+        currentGame.IsMoveCorrect(letter);
+        
+        if(!currentGame.IsMoveCorrect(letter))
+        OnBadMove();
+        
+        
+        currentGame.AddPlayedLetter(letter);
+        
+        if(currentGame.ISWON)OnWIn(); 
+
+
+        if(currentGame.ISGAMEOVER)OnGameOver(); 
+
+        iHMController.UpdateIhm();
+        
     }
-     void Verification()
+    void OnWIn()
     {
-        if(win)
-        {
-           //AudioSource.PlayOneShot(SfxCorrect);
-
-            if (txt.text == currentGame.wordToGuess)
-            {
-                Debug.Log("Vous avez gagné...");
-            }
-        }
-        else
-        {
-            iHMController.Pendu.GetComponent<Image>().sprite = iHMController.sp[i];
-            i++;
-            //AudioBehaviour.PlayOneShot(SfxFailed);
-
-            if(i==7)
-            {
-                Debug.Log("Vous avez perdu...");
-            }
-        }
+        
+        iHMController.PanelEnd.SetActive(true);
+        iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez gagné, le mot était bien " + currentGame.wordToGuess;
+        
+    }
+    
+    void OnGameOver()
+    {
+        iHMController.PanelEnd.SetActive(true);
+        iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez perdu, le mot était " + currentGame.wordToGuess;
+    }
+    void OnBadMove()
+    {   
+        currentGame.life --;
+        iHMController.UpdateSprite();
     }
 }
