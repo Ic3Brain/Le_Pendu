@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     IHMController iHMController;
     public static GameManager INSTANCE;
+    //public bool isInGame = true;
     
     
     void Awake()
@@ -33,34 +34,8 @@ public class GameManager : MonoBehaviour
     {
         currentGame = new Game(wordList);
         iHMController.UpdateIhm();
+        iHMController.HideGameOver();
     } 
-    
-    /*public void Validation(string letter){
-        reponse = "";
-        win = false;
-        
-        for (int i = 0; i < currentGame.wordToGuess.Length; i++)
-        {
-            if(txt.text.Substring(i, 1) == "_")
-            {
-                if(currentGame.wordToGuess.Substring(i, 1) == letter)
-                {
-                    reponse += letter;
-                    win = true;
-                }
-                else
-                {
-                    reponse += "_";
-                }
-            }
-            else 
-            {
-                reponse += txt.text.Substring(i, 1);
-            }
-        }
-        txt.text = reponse;
-        Verification();
-    }*/
     public void Validation(string letter)
     {   
         currentGame.IsMoveCorrect(letter);
@@ -97,4 +72,6 @@ public class GameManager : MonoBehaviour
         currentGame.life --;
         iHMController.UpdateSprite();
     }
+    
+    
 }

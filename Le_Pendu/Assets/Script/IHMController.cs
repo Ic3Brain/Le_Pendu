@@ -8,20 +8,31 @@ using System;
 using System.Xml.Schema;
 using Unity.VisualScripting.Antlr3.Runtime;
 using System.Xml.XPath;
+using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
+using UnityEngine.U2D;
 
 public class IHMController : MonoBehaviour
 {   
     [SerializeField]
     public TMP_InputField inputField;
-    public Sprite[] sp;
-    public AudioClip SfxCorrect, SfxFailed;
-    private AudioSource audiosource;
+    
+    [SerializeField]
+    public Game currentGame;
+    
     [SerializeField] 
     GameManager gameManager;
+    
+    public AudioClip SfxCorrect, SfxFailed;
+    private AudioSource audiosource;
+    
     public GameObject PanelEnd;
     public TMP_Text txt;
     [SerializeField]
     public Image spritePendu;
+    public Sprite[] sp;
+    
+    
+    
     
     
     
@@ -37,7 +48,6 @@ public class IHMController : MonoBehaviour
     public void OnButtonClick()
     {
         Debug.Log("bouton cliqué" + inputField);
-        //gameManager.Validation(inputField.text);
         GameManager.INSTANCE.Validation(inputField.text);
     }
 
@@ -56,11 +66,21 @@ public class IHMController : MonoBehaviour
     public void UpdateIhm()
     {
         UpdateGuessLetter();
+        //UpdateSprite();
     }
 
     public void UpdateSprite()
+    {   
+        for (int i = 0; i < currentGame.life; i++){
+            
+            spritePendu.sprite = sp[i];
+        }
+        
+        //TO DO mettre propriété
+    }
+    
+    public void HideGameOver()
     {
-         spritePendu.sprite = sp[0];
-         //TO DO mettre propriété
+        PanelEnd.SetActive(false);
     }
 }
