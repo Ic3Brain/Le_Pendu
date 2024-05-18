@@ -423,7 +423,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1332405433}
-  - {fileID: 1839545377}
   m_Father: {fileID: 1869139027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.34162495, y: 0.080000006}
@@ -1169,7 +1168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &832755021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2051,12 +2050,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 31585011}
-  m_Father: {fileID: 88357260}
+  m_Father: {fileID: 1869139027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.53243756, y: 0.27624267}
   m_AnchorMax: {x: 0.88533324, y: 0.68600005}
-  m_AnchoredPosition: {x: 278.05643, y: 555.25745}
-  m_SizeDelta: {x: 465.9904, y: 573.67065}
+  m_AnchoredPosition: {x: 2, y: -0.41809082}
+  m_SizeDelta: {x: -0.4529724, y: -2.1729736}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1839545378
 MonoBehaviour:
@@ -2195,6 +2194,7 @@ RectTransform:
   - {fileID: 832755021}
   - {fileID: 965672875}
   - {fileID: 1509353282}
+  - {fileID: 1839545377}
   - {fileID: 288090220}
   - {fileID: 88357260}
   - {fileID: 1142648467}
@@ -2236,7 +2236,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b8129b49e8eb09e4b838de7130449a00, type: 3}
   - {fileID: 21300000, guid: af8349c8cb75a5340b9bd48c81e36a0f, type: 3}
   - {fileID: 21300000, guid: fbe8b5b48cb685d4e9db21dac571eac4, type: 3}
-  Nuage: {fileID: 1839545376}
+  letterPlayed: {fileID: 31585012}
 --- !u!82 &1869139029
 AudioSource:
   m_ObjectHideFlags: 0

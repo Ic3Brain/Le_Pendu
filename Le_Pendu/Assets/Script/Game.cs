@@ -15,8 +15,9 @@ public class Game
     public int life
     {
         get
-        {    
+        {    Debug.Log("remain test" + remainingTest);
             return remainingTest;
+
         }
         set
         {
@@ -33,7 +34,7 @@ public class Game
             foreach(char c in wordToGuess)
             {
                 if(!playedLetters.Contains(c.ToString()))
-                return false;
+                    return false;
             }
             return true;
         }
@@ -82,10 +83,10 @@ public class Game
     public bool IsMoveCorrect(string letter)
     {
         if (!WordContainsLetter(letter))
-        return false;
+            return false;
 
         if(LetterAlreadyPLayed(letter))
-        return false;
+            return false;
 
         return true;
     }

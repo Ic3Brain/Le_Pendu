@@ -11,11 +11,10 @@ public class GameManager : MonoBehaviour
     public Game currentGame;
     public List<string> wordList;
     
-    
     [SerializeField]
     IHMController iHMController;
     public static GameManager INSTANCE;
-    //public bool isInGame = true;
+    
     
     
     
@@ -74,17 +73,27 @@ public class GameManager : MonoBehaviour
     {
         iHMController.PanelEnd.SetActive(true);
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez perdu, le mot était " + currentGame.wordToGuess;
+        currentGame.life = 7;
+        iHMController.UpdateSprite(currentGame.life+1);
+
     }
 
     /*Si faute alors life -- et on update la sprite*/
     void OnBadMove()
     {   
-        currentGame.life --;
-        iHMController.UpdateSprite();
+        currentGame.life--;
+        iHMController.UpdateSprite(currentGame.life+1);
+        
+
     }
-    /**/
+    /*montre la lettre jouée*/
     public void PlayedLetters()
     {
-        iHMController.Nuage.GetComponentInChildren<TMP_Text>().text = "" + currentGame.playedLetters;
+        string letter = "";
+        foreach(var i in currentGame.playedLetters)
+        {
+            letter += i + ", ";
+        }
+        iHMController.letterPlayed.text = letter;
     }
 }

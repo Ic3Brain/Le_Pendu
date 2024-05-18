@@ -22,22 +22,14 @@ public class IHMController : MonoBehaviour
     
     [SerializeField] 
     GameManager gameManager;
-    
     public AudioClip SfxCorrect, SfxFailed;
     private AudioSource audiosource;
-    
     public GameObject PanelEnd;
     public TMP_Text txt;
     [SerializeField]
     public Image spritePendu;
     public Sprite[] sp;
-    public GameObject Nuage;
-    
-    
-    
-    
-    
-    
+    public TMP_Text letterPlayed;
     
     private void Awake()
     {
@@ -83,25 +75,25 @@ public class IHMController : MonoBehaviour
             else result += " _ ";
         }
         txt.text = result;
-
     }
 
     /*met a jour l'ihm*/
     public void UpdateIhm()
     {
         UpdateGuessLetter();
-        UpdateSprite();
+        //UpdateSprite();
+        gameManager.PlayedLetters();
     }
 
     /*met a jour le sprite*/
-    public void UpdateSprite()
-    
+    public void UpdateSprite(int life)
     {   
-        spritePendu.sprite = sp[0];
+        if(life > 0)
+        { 
+            spritePendu.sprite = sp[life-1];
+        }
     }
         
-        //TO DO mettre propriété
-    
     /*désactive le gameoverpanel*/
     public void HideGameOver()
     {
