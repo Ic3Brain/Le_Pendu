@@ -10,6 +10,7 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using System.Xml.XPath;
 using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine.U2D;
+using System.Linq;
 
 public class IHMController : MonoBehaviour
 {   
@@ -30,6 +31,7 @@ public class IHMController : MonoBehaviour
     [SerializeField]
     public Image spritePendu;
     public Sprite[] sp;
+    public GameObject Nuage;
     
     
     
@@ -40,17 +42,38 @@ public class IHMController : MonoBehaviour
     private void Awake()
     {
         audiosource = GetComponent<AudioSource>();
+        ShowWord();
+        
     }
     
-
+    /*créer le nombre de _*/
+    void ShowWord()
+    {
+        foreach (char c in currentGame.wordToGuess)
+        {
+            if(c.ToString() == "-")
+            {
+                txt.text += "-";
+            }
+            else if(c.ToString() == "'")
+            {
+                txt.text += "'";
+            }
+            else
+            {
+                txt.text += "_";
+            }
+        }
+    }
     
-    
+    /**/
     public void OnButtonClick()
     {
         Debug.Log("bouton cliqué" + inputField);
         GameManager.INSTANCE.Validation(inputField.text);
     }
 
+    /*vérifie si la lettre est bonne ou pas*/
     private void UpdateGuessLetter()
     {
         string result = string.Empty;
@@ -63,22 +86,23 @@ public class IHMController : MonoBehaviour
 
     }
 
+    /*met a jour l'ihm*/
     public void UpdateIhm()
     {
         UpdateGuessLetter();
-        //UpdateSprite();
+        UpdateSprite();
     }
 
+    /*met a jour le sprite*/
     public void UpdateSprite()
+    
     {   
-        for (int i = 0; i < currentGame.life; i++){
-            
-            spritePendu.sprite = sp[i];
-        }
+        spritePendu.sprite = sp[0];
+    }
         
         //TO DO mettre propriété
-    }
     
+    /*désactive le gameoverpanel*/
     public void HideGameOver()
     {
         PanelEnd.SetActive(false);

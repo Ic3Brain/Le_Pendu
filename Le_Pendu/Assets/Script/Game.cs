@@ -25,6 +25,7 @@ public class Game
         }
     }
 
+    /*si lettre bonne alors won*/
     public bool ISWON
     {
         get
@@ -38,6 +39,7 @@ public class Game
         }
     }
 
+    /*si vie = 0 alors gameover*/
     public bool ISGAMEOVER
     {
         get
@@ -47,7 +49,7 @@ public class Game
     }
 
      
-    
+    /*Constructor*/
     public Game(List<string> wordListToGuess)
     {
         playedLetters = new List<string>();
@@ -64,16 +66,19 @@ public class Game
         return wordToGuess[index];
     }
 
+    /*le mot contient la lettre*/
     private bool WordContainsLetter(string letter)
     {
         return wordToGuess.Contains(letter);
     }
 
+    /*lettre déjà jouée*/
     public bool LetterAlreadyPLayed(string letter)
     {
         return playedLetters.Contains(letter);
     }
 
+    /*si le coup est bon*/
     public bool IsMoveCorrect(string letter)
     {
         if (!WordContainsLetter(letter))
@@ -85,10 +90,12 @@ public class Game
         return true;
     }
 
+    /*ajoute une lettre joué si dans le mot*/
     public void AddPlayedLetter(string letter)
     {   
         if(playedLetters.Contains(letter))
         return;
         playedLetters.Add(letter);
     }
+    
 }

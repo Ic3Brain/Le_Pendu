@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     //public bool isInGame = true;
     
     
+    
     void Awake()
     {
         INSTANCE = this;
@@ -30,12 +31,16 @@ public class GameManager : MonoBehaviour
         
     }
 
+    /*commence une nouvelle partie*/
    public void StartNewGame()
     {
         currentGame = new Game(wordList);
         iHMController.UpdateIhm();
         iHMController.HideGameOver();
+        
     } 
+
+    /*validation de la lettre jouée*/
     public void Validation(string letter)
     {   
         currentGame.IsMoveCorrect(letter);
@@ -54,6 +59,8 @@ public class GameManager : MonoBehaviour
         iHMController.UpdateIhm();
         
     }
+
+    /*Gagné alors on affiche le text*/
     void OnWIn()
     {
         
@@ -62,16 +69,22 @@ public class GameManager : MonoBehaviour
         
     }
     
+    /*Perdu alors on affiche le text*/
     void OnGameOver()
     {
         iHMController.PanelEnd.SetActive(true);
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez perdu, le mot était " + currentGame.wordToGuess;
     }
+
+    /*Si faute alors life -- et on update la sprite*/
     void OnBadMove()
     {   
         currentGame.life --;
         iHMController.UpdateSprite();
     }
-    
-    
+    /**/
+    public void PlayedLetters()
+    {
+        iHMController.Nuage.GetComponentInChildren<TMP_Text>().text = "" + currentGame.playedLetters;
+    }
 }
