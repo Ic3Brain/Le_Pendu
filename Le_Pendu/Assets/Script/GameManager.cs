@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     IHMController iHMController;
     public static GameManager INSTANCE;
+    private AudioSource audioSource;
+    private AudioClip letterValidation;
+    private AudioClip gameOver;
+    private AudioClip gameWin;
     
     
     
@@ -21,6 +25,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         INSTANCE = this;
+        audioSource = GetComponent<AudioSource>();
     }
     
     
@@ -56,7 +61,7 @@ public class GameManager : MonoBehaviour
         if(currentGame.ISGAMEOVER)OnGameOver(); 
 
         iHMController.UpdateIhm();
-        
+        audioSource.PlayOneShot(letterValidation);
     }
 
     /*Gagné alors on affiche le text*/
@@ -65,6 +70,7 @@ public class GameManager : MonoBehaviour
         
         iHMController.PanelEnd.SetActive(true);
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez gagné, le mot était bien " + currentGame.wordToGuess;
+        audioSource.PlayOneShot(gameWin);
         
     }
     
@@ -75,6 +81,7 @@ public class GameManager : MonoBehaviour
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez perdu, le mot était " + currentGame.wordToGuess;
         currentGame.life = 7;
         iHMController.UpdateSprite(currentGame.life+1);
+        audioSource.PlayOneShot(gameOver);
 
     }
 

@@ -22,8 +22,8 @@ public class IHMController : MonoBehaviour
     
     [SerializeField] 
     GameManager gameManager;
-    public AudioClip SfxCorrect, SfxFailed;
-    private AudioSource audiosource;
+    
+    
     public GameObject PanelEnd;
     public TMP_Text txt;
     [SerializeField]
@@ -33,9 +33,7 @@ public class IHMController : MonoBehaviour
     
     private void Awake()
     {
-        audiosource = GetComponent<AudioSource>();
         ShowWord();
-        
     }
     
     /*créer le nombre de _*/
@@ -81,7 +79,6 @@ public class IHMController : MonoBehaviour
     public void UpdateIhm()
     {
         UpdateGuessLetter();
-        //UpdateSprite();
         gameManager.PlayedLetters();
     }
 
