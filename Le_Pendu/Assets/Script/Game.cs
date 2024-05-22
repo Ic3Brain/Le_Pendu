@@ -59,6 +59,13 @@ public class Game
         
 
     }
+
+    public Game(string wordToGuess)
+    {
+        playedLetters = new List<string>();
+        remainingTest = 7;
+        this.wordToGuess = wordToGuess.ToUpper();
+    }
     
     /*Choisi un mot dans la liste*/
     string GetRandomWord(List<string> wordToGuess)

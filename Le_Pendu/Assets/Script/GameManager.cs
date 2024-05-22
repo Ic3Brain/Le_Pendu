@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,11 +14,16 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]
     IHMController iHMController;
+    [SerializeField]
+    WordSite wordSite;
     public static GameManager INSTANCE;
     private AudioSource audioSource;
-    private AudioClip letterValidation;
+    [SerializeField] 
+    AudioClip letterValidation;
     private AudioClip gameOver;
     private AudioClip gameWin;
+    [SerializeField]
+    AudioSource SFXaudioSource;
     
     
     
@@ -38,11 +44,22 @@ public class GameManager : MonoBehaviour
     /*commence une nouvelle partie*/
    public void StartNewGame()
     {
-        currentGame = new Game(wordList);
+        StartCoroutine(StartNewGameCorout());
+    } 
+    IEnumerator StartNewGameCorout()
+    {
+        if(Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            currentGame = new Game(wordList);
+        }
+        else
+        {
+            yield return wordSite.GetWord();
+            currentGame = new Game(wordSite.answer.motChoisi);        
+        }
         iHMController.UpdateIhm();
         iHMController.HideGameOver();
-        
-    } 
+    }
 
     /*validation de la lettre jouée*/
     public void Validation(string letter)
@@ -61,7 +78,8 @@ public class GameManager : MonoBehaviour
         if(currentGame.ISGAMEOVER)OnGameOver(); 
 
         iHMController.UpdateIhm();
-        audioSource.PlayOneShot(letterValidation);
+        SFXaudioSource.clip = letterValidation;
+        SFXaudioSource.Play();
     }
 
     /*Gagné alors on affiche le text*/

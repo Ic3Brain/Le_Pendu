@@ -41,18 +41,7 @@ public class IHMController : MonoBehaviour
     {
         foreach (char c in currentGame.wordToGuess)
         {
-            if(c.ToString() == "-")
-            {
-                txt.text += "-";
-            }
-            else if(c.ToString() == "'")
-            {
-                txt.text += "'";
-            }
-            else
-            {
-                txt.text += "_";
-            }
+            txt.text += "_";
         }
     }
     
