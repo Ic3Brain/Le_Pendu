@@ -23,13 +23,13 @@ public class IHMController : MonoBehaviour
     [SerializeField] 
     GameManager gameManager;
     
-    
     public GameObject PanelEnd;
     public TMP_Text txt;
     [SerializeField]
     public Image spritePendu;
     public Sprite[] sp;
     public TMP_Text letterPlayed;
+    public GameObject PanelSound;
     
     private void Awake()
     {
@@ -48,8 +48,19 @@ public class IHMController : MonoBehaviour
     /**/
     public void OnButtonClick()
     {
-        Debug.Log("bouton cliqué" + inputField);
         GameManager.INSTANCE.Validation(inputField.text);
+    }
+
+    /*Active le PanelSound*/
+    public void OnButtonClickSound()
+    {
+        PanelSound.SetActive(true);
+    }
+
+    /*Désactive le PanelSound*/
+    public void OnbuttonClickSoundOff()
+    {
+        PanelSound.SetActive(false);
     }
 
     /*vérifie si la lettre est bonne ou pas*/

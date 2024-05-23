@@ -20,10 +20,15 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] 
     AudioClip letterValidation;
-    private AudioClip gameOver;
-    private AudioClip gameWin;
+    
+    [SerializeField] 
+    AudioClip gameOver;
+    
+    [SerializeField] 
+    AudioClip gameWin;
+    
     [SerializeField]
-    AudioSource SFXaudioSource;
+    AudioSource SFXAudioSource;
     
     
     
@@ -78,8 +83,8 @@ public class GameManager : MonoBehaviour
         if(currentGame.ISGAMEOVER)OnGameOver(); 
 
         iHMController.UpdateIhm();
-        SFXaudioSource.clip = letterValidation;
-        SFXaudioSource.Play();
+        SFXAudioSource.clip = letterValidation;
+        SFXAudioSource.Play();
     }
 
     /*Gagné alors on affiche le text*/
@@ -88,8 +93,9 @@ public class GameManager : MonoBehaviour
         
         iHMController.PanelEnd.SetActive(true);
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez gagné, le mot était bien " + currentGame.wordToGuess;
-        audioSource.PlayOneShot(gameWin);
-        
+        //audioSource.PlayOneShot(gameWin);
+        SFXAudioSource.clip = gameWin;
+        SFXAudioSource.Play();
     }
     
     /*Perdu alors on affiche le text*/
@@ -99,7 +105,11 @@ public class GameManager : MonoBehaviour
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez perdu, le mot était " + currentGame.wordToGuess;
         currentGame.life = 7;
         iHMController.UpdateSprite(currentGame.life+1);
-        audioSource.PlayOneShot(gameOver);
+        //audioSource.PlayOneShot(gameOver);
+        
+        SFXAudioSource.clip = gameOver;
+        SFXAudioSource.Play();
+        
 
     }
 

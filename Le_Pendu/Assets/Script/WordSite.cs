@@ -26,11 +26,9 @@ public class WordSite : MonoBehaviour
             switch (webRequest.result)
             {
                 case UnityWebRequest.Result.ConnectionError:
-                Debug.Log("connection error");
                 break;
                 case UnityWebRequest.Result.Success:
                 answer = JsonUtility.FromJson<WordAnswer>(webRequest.downloadHandler.text);
-                Debug.Log("succes"+ answer.motChoisi);
                 break;
             }
         }

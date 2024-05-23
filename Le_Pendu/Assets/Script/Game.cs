@@ -15,14 +15,14 @@ public class Game
     public int life
     {
         get
-        {    Debug.Log("remain test" + remainingTest);
+        {    
             return remainingTest;
 
         }
         set
         {
             remainingTest = value;
-            Debug.Log("valeur modifiée");
+            
         }
     }
 
