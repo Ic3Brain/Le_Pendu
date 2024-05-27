@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         iHMController.PanelEnd.SetActive(true);
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez perdu, le mot était " + currentGame.wordToGuess;
         currentGame.life = 7;
-        iHMController.UpdateSprite(currentGame.life+1);
+        iHMController.UpdateCherry(currentGame.life+1);
         //audioSource.PlayOneShot(gameOver);
         
         SFXAudioSource.clip = gameOver;
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     void OnBadMove()
     {   
         currentGame.life--;
-        iHMController.UpdateSprite(currentGame.life+1);
+        iHMController.UpdateCherry(currentGame.life+1);
         
 
     }

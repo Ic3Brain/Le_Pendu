@@ -25,11 +25,16 @@ public class IHMController : MonoBehaviour
     
     public GameObject PanelEnd;
     public TMP_Text txt;
+    
     [SerializeField]
-    public Image spritePendu;
-    public Sprite[] sp;
+    
+    public GameObject[] BoardCherry;
     public TMP_Text letterPlayed;
     public GameObject PanelSound;
+    public GameObject PanelConnectionError;
+    public GameObject CherryParent;
+    
+    
     
     private void Awake()
     {
@@ -57,11 +62,18 @@ public class IHMController : MonoBehaviour
         PanelSound.SetActive(true);
     }
 
+    
     /*Désactive le PanelSound*/
     public void OnbuttonClickSoundOff()
     {
         PanelSound.SetActive(false);
     }
+
+    public void OnButtonClickConnectionErrorOff()
+    {
+        PanelConnectionError.SetActive(false);
+    }
+
 
     /*vérifie si la lettre est bonne ou pas*/
     private void UpdateGuessLetter()
@@ -83,14 +95,14 @@ public class IHMController : MonoBehaviour
     }
 
     /*met a jour le sprite*/
-    public void UpdateSprite(int life)
+    public void UpdateCherry(int life)
     {   
         if(life > 0)
         { 
-            spritePendu.sprite = sp[life-1];
+          CherryParent = BoardCherry[life-1];
         }
     }
-        
+
     /*désactive le gameoverpanel*/
     public void HideGameOver()
     {

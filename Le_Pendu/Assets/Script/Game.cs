@@ -56,8 +56,6 @@ public class Game
         playedLetters = new List<string>();
         remainingTest = 7;
         wordToGuess = GetRandomWord(wordListToGuess);
-        
-
     }
 
     public Game(string wordToGuess)

@@ -8,6 +8,8 @@ public class WordSite : MonoBehaviour
 {
     [SerializeField]
     private string uri = "https://makeyourgame.fun/api/pendu/avoir-un-mot";
+    
+    IHMController iHMController;
     public WordAnswer answer;
     
     public Coroutine GetWord()
@@ -26,6 +28,7 @@ public class WordSite : MonoBehaviour
             switch (webRequest.result)
             {
                 case UnityWebRequest.Result.ConnectionError:
+                iHMController.PanelConnectionError.SetActive(true);
                 break;
                 case UnityWebRequest.Result.Success:
                 answer = JsonUtility.FromJson<WordAnswer>(webRequest.downloadHandler.text);
