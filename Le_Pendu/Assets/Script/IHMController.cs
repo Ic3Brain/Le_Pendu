@@ -22,11 +22,14 @@ public class IHMController : MonoBehaviour
     
     [SerializeField] 
     GameManager gameManager;
+
+    [SerializeField]
+    CherryController cherryController;
     
     public GameObject PanelEnd;
     public TMP_Text txt;
     
-    [SerializeField]
+    
     
     public GameObject[] BoardCherry;
     public TMP_Text letterPlayed;
@@ -92,6 +95,7 @@ public class IHMController : MonoBehaviour
     {
         UpdateGuessLetter();
         gameManager.PlayedLetters();
+        
     }
 
     /*met a jour le sprite*/
@@ -99,7 +103,8 @@ public class IHMController : MonoBehaviour
     {   
         if(life > 0)
         { 
-          CherryParent = BoardCherry[life-1];
+            CherryParent = BoardCherry[life-1];
+            //cherryController.UnFreezeConstraintsCherry();
         }
     }
 

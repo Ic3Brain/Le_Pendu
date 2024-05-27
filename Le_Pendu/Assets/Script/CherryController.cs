@@ -11,16 +11,15 @@ public class CherryController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //FreezeXAndYConstraintsCherry();
-        UnFreezeConstraintsCherry();
+        FreezeXAndYConstraintsCherry();
     }
 
     public void FreezeXAndYConstraintsCherry()
     {
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX & RigidbodyConstraints2D.FreezePositionY;
     }
     public void UnFreezeConstraintsCherry()
     {
-        rb.constraints = ~RigidbodyConstraints2D.FreezePosition;
+        rb.constraints = ~RigidbodyConstraints2D.FreezePositionX & ~RigidbodyConstraints2D.FreezePositionY;
     }
 }

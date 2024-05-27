@@ -5167,6 +5167,7 @@ MonoBehaviour:
     playedLetters: []
     wordToGuess: 
   gameManager: {fileID: 1681835881}
+  cherryController: {fileID: -832700849354007403, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
   PanelEnd: {fileID: 1142648464}
   txt: {fileID: 965672876}
   BoardCherry:
