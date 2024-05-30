@@ -1299,11 +1299,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288090219}
   m_CullTransparentMesh: 1
---- !u!1 &294414234 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5101677570839582199, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
-  m_PrefabInstance: {fileID: 1984124906}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &297606773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,11 +1639,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368680379}
   m_CullTransparentMesh: 1
---- !u!1 &391729392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5101677570839582199, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
-  m_PrefabInstance: {fileID: 61686395}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &429147308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,11 +1741,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &467184008 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5101677570839582199, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
-  m_PrefabInstance: {fileID: 1849876341}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,11 +3075,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332405432}
   m_CullTransparentMesh: 1
---- !u!1 &1338378442 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5101677570839582199, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
-  m_PrefabInstance: {fileID: 235050784}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1344632833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3681,11 +3661,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401484141}
   m_CullTransparentMesh: 1
---- !u!1 &1441904340 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5101677570839582199, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
-  m_PrefabInstance: {fileID: 567643901}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1477239666
 GameObject:
   m_ObjectHideFlags: 0
@@ -4119,11 +4094,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!1 &1572151240 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5101677570839582199, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
-  m_PrefabInstance: {fileID: 1344632833}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1608562769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4294,11 +4264,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627384662}
   m_CullTransparentMesh: 1
---- !u!1 &1659328140 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5101677570839582199, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
-  m_PrefabInstance: {fileID: 1938904782204646302}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1681835880
 GameObject:
   m_ObjectHideFlags: 0
@@ -5167,21 +5132,14 @@ MonoBehaviour:
     playedLetters: []
     wordToGuess: 
   gameManager: {fileID: 1681835881}
-  cherryController: {fileID: -832700849354007403, guid: 3bc568044ccbb2d43842f502ca980725, type: 3}
   PanelEnd: {fileID: 1142648464}
   txt: {fileID: 965672876}
-  BoardCherry:
-  - {fileID: 391729392}
-  - {fileID: 1659328140}
-  - {fileID: 1572151240}
-  - {fileID: 1338378442}
-  - {fileID: 467184008}
-  - {fileID: 1441904340}
-  - {fileID: 294414234}
+  cherryParent: {fileID: 1387402235}
+  BoardCherry: []
   letterPlayed: {fileID: 31585012}
   PanelSound: {fileID: 1769553003}
   PanelConnectionError: {fileID: 58232465}
-  CherryParent: {fileID: 1387402234}
+  validateButton: {fileID: 88357261}
 --- !u!1001 &1984124906
 PrefabInstance:
   m_ObjectHideFlags: 0

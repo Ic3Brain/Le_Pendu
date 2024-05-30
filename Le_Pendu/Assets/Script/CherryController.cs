@@ -1,25 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class CherryController : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Vector3 localPosition;
+    public Quaternion localRotation;
 
+    /*On prends la position des cerises au start*/
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        FreezeXAndYConstraintsCherry();
+        localPosition = transform.localPosition;
+        localRotation = transform.localRotation;
     }
 
-    public void FreezeXAndYConstraintsCherry()
+    /*Procède au reset des cerises sur l'arbre*/
+    public void Reset()
     {
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX & RigidbodyConstraints2D.FreezePositionY;
+        transform.localPosition = localPosition;
+        transform.localRotation = localRotation;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0;
     }
-    public void UnFreezeConstraintsCherry()
+
+    /*Fait tomber les cerises*/
+    public void FallFonction()
     {
-        rb.constraints = ~RigidbodyConstraints2D.FreezePositionX & ~RigidbodyConstraints2D.FreezePositionY;
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }

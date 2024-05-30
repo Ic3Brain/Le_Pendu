@@ -36,25 +36,28 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         INSTANCE = this;
-        audioSource = GetComponent<AudioSource>();
     }
     
     
     void Start()
     {
-        StartNewGame();
-        
+        StartNewGame();   
     }
 
     /*commence une nouvelle partie*/
    public void StartNewGame()
     {
         StartCoroutine(StartNewGameCorout());
+        iHMController.ResetCherries();
+        iHMController.EnableValidateButton(true);
     } 
+    
+    /**/
     IEnumerator StartNewGameCorout()
     {
         if(Application.internetReachability == NetworkReachability.NotReachable)
-        {
+        {   
+            iHMController.PanelConnectionError.SetActive(true);
             currentGame = new Game(wordList);
         }
         else
@@ -77,11 +80,19 @@ public class GameManager : MonoBehaviour
         
         currentGame.AddPlayedLetter(letter);
         
-        if(currentGame.ISWON)OnWIn(); 
+        if(currentGame.ISWON)
+        {   
+            OnWIn();
+            return;
+        }
+   
 
-
-        if(currentGame.ISGAMEOVER)OnGameOver(); 
-
+        if(currentGame.ISGAMEOVER)
+        {
+            StartCoroutine(OnGameOver());
+            return;
+        }
+        
         iHMController.UpdateIhm();
         SFXAudioSource.clip = letterValidation;
         SFXAudioSource.Play();
@@ -90,22 +101,23 @@ public class GameManager : MonoBehaviour
     /*Gagné alors on affiche le text*/
     void OnWIn()
     {
-        
+        iHMController.EnableValidateButton(false);
         iHMController.PanelEnd.SetActive(true);
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez gagné, le mot était bien " + currentGame.wordToGuess;
-        //audioSource.PlayOneShot(gameWin);
+        
         SFXAudioSource.clip = gameWin;
         SFXAudioSource.Play();
     }
     
     /*Perdu alors on affiche le text*/
-    void OnGameOver()
-    {
+    IEnumerator OnGameOver()
+    {   
+        iHMController.EnableValidateButton(false);
+        yield return new WaitForSeconds(2);
         iHMController.PanelEnd.SetActive(true);
         iHMController.PanelEnd.GetComponentInChildren<TMP_Text>().text = "Vous avez perdu, le mot était " + currentGame.wordToGuess;
         currentGame.life = 7;
         iHMController.UpdateCherry(currentGame.life+1);
-        //audioSource.PlayOneShot(gameOver);
         
         SFXAudioSource.clip = gameOver;
         SFXAudioSource.Play();
@@ -117,10 +129,11 @@ public class GameManager : MonoBehaviour
     void OnBadMove()
     {   
         currentGame.life--;
-        iHMController.UpdateCherry(currentGame.life+1);
+        iHMController.UpdateCherry(currentGame.life);
         
 
     }
+    
     /*montre la lettre jouée*/
     public void PlayedLetters()
     {

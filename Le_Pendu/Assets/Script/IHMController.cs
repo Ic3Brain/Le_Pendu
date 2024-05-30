@@ -11,6 +11,7 @@ using System.Xml.XPath;
 using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine.U2D;
 using System.Linq;
+using Unity.Mathematics;
 
 public class IHMController : MonoBehaviour
 {   
@@ -22,26 +23,41 @@ public class IHMController : MonoBehaviour
     
     [SerializeField] 
     GameManager gameManager;
-
-    [SerializeField]
-    CherryController cherryController;
     
     public GameObject PanelEnd;
     public TMP_Text txt;
     
+    [SerializeField]
+    private Transform cherryParent;
     
-    
-    public GameObject[] BoardCherry;
+    [SerializeField]
+    private List <CherryController> BoardCherry;
     public TMP_Text letterPlayed;
     public GameObject PanelSound;
     public GameObject PanelConnectionError;
-    public GameObject CherryParent;
+    
+    [SerializeField]
+    Button validateButton;
     
     
     
+    
+    /**/
     private void Awake()
     {
         ShowWord();
+        GetAllCherries();
+    }
+
+    /**/
+    void GetAllCherries()
+    {
+        BoardCherry = new  List<CherryController>();
+        
+        foreach(Transform cherry in cherryParent)
+        {
+            BoardCherry.Add(cherry.GetComponent<CherryController>());
+        }
     }
     
     /*créer le nombre de _*/
@@ -51,6 +67,12 @@ public class IHMController : MonoBehaviour
         {
             txt.text += "_";
         }
+    }
+    
+    /**/
+    public void EnableValidateButton(bool value)
+    {
+        validateButton.interactable = value;
     }
     
     /**/
@@ -72,6 +94,7 @@ public class IHMController : MonoBehaviour
         PanelSound.SetActive(false);
     }
 
+    /**/
     public void OnButtonClickConnectionErrorOff()
     {
         PanelConnectionError.SetActive(false);
@@ -101,10 +124,19 @@ public class IHMController : MonoBehaviour
     /*met a jour le sprite*/
     public void UpdateCherry(int life)
     {   
-        if(life > 0)
-        { 
-            CherryParent = BoardCherry[life-1];
-            //cherryController.UnFreezeConstraintsCherry();
+        
+           
+        int index = Mathf.Clamp(life, 0, BoardCherry.Count-1);
+        BoardCherry[index].FallFonction();
+        
+    }
+
+    /**/
+    public void ResetCherries()
+    {
+        foreach(var cherry in BoardCherry)
+        {
+            cherry.Reset();
         }
     }
 

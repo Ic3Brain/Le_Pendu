@@ -12,12 +12,13 @@ public class WordSite : MonoBehaviour
     IHMController iHMController;
     public WordAnswer answer;
     
+    /**/
     public Coroutine GetWord()
     {
         return StartCoroutine(GetWordCorout(uri));
     }
 
-
+    /**/
      IEnumerator GetWordCorout(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
@@ -28,7 +29,7 @@ public class WordSite : MonoBehaviour
             switch (webRequest.result)
             {
                 case UnityWebRequest.Result.ConnectionError:
-                iHMController.PanelConnectionError.SetActive(true);
+                
                 break;
                 case UnityWebRequest.Result.Success:
                 answer = JsonUtility.FromJson<WordAnswer>(webRequest.downloadHandler.text);
@@ -38,6 +39,7 @@ public class WordSite : MonoBehaviour
     }
 }
 
+/**/
 public class WordAnswer
 {
     public string status;

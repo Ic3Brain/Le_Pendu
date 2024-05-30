@@ -58,6 +58,7 @@ public class Game
         wordToGuess = GetRandomWord(wordListToGuess);
     }
 
+    /**/
     public Game(string wordToGuess)
     {
         playedLetters = new List<string>();
