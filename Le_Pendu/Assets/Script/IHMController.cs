@@ -42,14 +42,14 @@ public class IHMController : MonoBehaviour
     
     
     
-    /**/
+    
     private void Awake()
     {
         ShowWord();
         GetAllCherries();
     }
 
-    /**/
+    /*Renseigne toutes les cerises dans la list*/
     void GetAllCherries()
     {
         BoardCherry = new  List<CherryController>();
@@ -69,13 +69,13 @@ public class IHMController : MonoBehaviour
         }
     }
     
-    /**/
+    /*Active ou désactive le boutton 'valider'*/
     public void EnableValidateButton(bool value)
     {
         validateButton.interactable = value;
     }
     
-    /**/
+    /*Boutton validation des lettres*/
     public void OnButtonClick()
     {
         GameManager.INSTANCE.Validation(inputField.text);
@@ -94,7 +94,7 @@ public class IHMController : MonoBehaviour
         PanelSound.SetActive(false);
     }
 
-    /**/
+    /*Affiche le panel d'erreur de connection*/
     public void OnButtonClickConnectionErrorOff()
     {
         PanelConnectionError.SetActive(false);
@@ -131,7 +131,7 @@ public class IHMController : MonoBehaviour
         
     }
 
-    /**/
+    /*Replace les cerises au bon endroit*/
     public void ResetCherries()
     {
         foreach(var cherry in BoardCherry)

@@ -12,6 +12,7 @@ public class Game
     public List<string> playedLetters;
     public string wordToGuess;
     int remainingTest;
+    
     public int life
     {
         get
@@ -50,7 +51,7 @@ public class Game
     }
 
      
-    /*Constructor*/
+    /*Constructor Game*/
     public Game(List<string> wordListToGuess)
     {
         playedLetters = new List<string>();

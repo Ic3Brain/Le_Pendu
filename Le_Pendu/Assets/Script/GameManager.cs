@@ -14,10 +14,11 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]
     IHMController iHMController;
+    
     [SerializeField]
     WordSite wordSite;
     public static GameManager INSTANCE;
-    private AudioSource audioSource;
+
     [SerializeField] 
     AudioClip letterValidation;
     
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
         iHMController.EnableValidateButton(true);
     } 
     
-    /**/
+    /*Cherche si l'utilisateur a de la connexion, si non alors affiche le PannelError. Si oui alors créer un mot via le site*/
     IEnumerator StartNewGameCorout()
     {
         if(Application.internetReachability == NetworkReachability.NotReachable)
