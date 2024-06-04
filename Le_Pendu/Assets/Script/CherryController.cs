@@ -11,7 +11,7 @@ public class CherryController : MonoBehaviour
     public Vector3 localPosition;
     public Quaternion localRotation;
 
-    /*On prends la position des cerises au start*/
+    /*On prends la position des cerises*/
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
