@@ -5,13 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using System.Xml.Schema;
-using Unity.VisualScripting.Antlr3.Runtime;
-using System.Xml.XPath;
-using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
-using UnityEngine.U2D;
-using System.Linq;
-using Unity.Mathematics;
+
 
 public class IHMController : MonoBehaviour
 {   
