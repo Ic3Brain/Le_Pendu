@@ -12,7 +12,7 @@ public class CherryController : MonoBehaviour
     public Quaternion localRotation;
 
     /*On prends la position des cerises au start*/
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         localPosition = transform.localPosition;
